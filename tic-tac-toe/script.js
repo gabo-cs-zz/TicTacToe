@@ -9,14 +9,23 @@ btnX.addEventListener("click", ()=> actionate(false, "X"));
 btnO.addEventListener("click", ()=> actionate(true, "O"));
 
 for(let i of ROWS){
+  var rows_o = [], cols_o = [];
+  var rows_x = [], cols_x = [];
   for(let j of i.cells){
     j.addEventListener("click", ()=> {
       if (sw) {
         changeValues(j, "O", "X");
+        rows_o.push(i.rowIndex);
+        cols_o.push(j.cellIndex);
       } else {
         changeValues(j, "X", "O");
+        rows_x.push(i.rowIndex);
+        cols_x.push(j.cellIndex);
       }
       sw = !sw;
+      console.log(j.innerHTML +' '+i.rowIndex +' '+j.cellIndex );
+      console.log(rows_o);
+      console.log(cols_o);
     });
   }
 }
