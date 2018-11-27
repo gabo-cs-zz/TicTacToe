@@ -26,6 +26,10 @@ for(let i of ROWS){
         win("O");
       } else if( winSameLine(rows_x, cols_x) || winSameLine(cols_x, rows_x) ){
         win("X");
+      } else if (winMajorDiagonal(rows_o, cols_o)) {
+        win("O");
+      } else if (winMajorDiagonal(rows_x, cols_x)) {
+        win("X");
       } else {
         if (cols_o.length == 5 || cols_x.length == 5) win('T');
       }
@@ -83,4 +87,14 @@ function winSameLine(arr, arr2){
   }
   return ( (sum == 3 && cnt == 3) || (sum2 == 3 && cnt2 == 3)
     || (sum3 == 3 && cnt3 == 3)  );
+}
+
+function winMajorDiagonal(arr, arr2){
+  var cnt = 0;
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] == arr2[i]) {
+      cnt++;
+    }
+  }
+  return cnt == 3;
 }
