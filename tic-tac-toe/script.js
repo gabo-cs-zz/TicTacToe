@@ -35,9 +35,6 @@ for(let i of ROWS){
         if (cols_o.length == 5 || cols_x.length == 5) win('T');
       }
       sw = !sw;
-      /*console.log(j.innerHTML +' '+i.rowIndex +' '+j.cellIndex );
-      console.log(rows_o);
-      console.log(cols_o);*/
     });
   }
 }
