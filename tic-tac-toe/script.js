@@ -5,6 +5,7 @@ var btnO = document.getElementById("O");
 var btnX = document.getElementById("X");
 var tb = document.getElementById("board");
 const ROWS = tb.rows;
+
 btnX.addEventListener("click", ()=> actionate(false, "X"));
 btnO.addEventListener("click", ()=> actionate(true, "O"));
 
@@ -26,9 +27,9 @@ for(let i of ROWS){
         win("O");
       } else if( winSameLine(rows_x, cols_x) || winSameLine(cols_x, rows_x) ){
         win("X");
-      } else if (winMajorDiagonal(rows_o, cols_o)) {
+      } else if ( winMajorDiagonal(rows_o, cols_o) || winMinorDiagonal(rows_o, cols_o) ) {
         win("O");
-      } else if (winMajorDiagonal(rows_x, cols_x)) {
+      } else if ( winMajorDiagonal(rows_x, cols_x) || winMinorDiagonal(rows_x, cols_x) ) {
         win("X");
       } else {
         if (cols_o.length == 5 || cols_x.length == 5) win('T');
@@ -94,6 +95,24 @@ function winMajorDiagonal(arr, arr2){
   for (let i = 0; i < arr.length; i++) {
     if (arr[i] == arr2[i]) {
       cnt++;
+    }
+  }
+  return cnt == 3;
+}
+
+function winMinorDiagonal(arr, arr2) {
+  var cnt = 0;
+  for (let i = 0; i < arr.length; i++) {
+    switch (arr[i]) {
+      case 0:
+        if(arr2[i] == 2) cnt++;
+        break;
+      case 1:
+        if(arr2[i] == 1) cnt++;
+        break;
+      case 2:
+        if(arr2[i] == 0) cnt++;
+        break;
     }
   }
   return cnt == 3;
